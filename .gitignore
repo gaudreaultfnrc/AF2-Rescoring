@@ -2,4 +2,5 @@
 *#
 *.tmp
 *.ori
+*.lock
 complex_*.pdb
