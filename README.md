@@ -1,2 +1,30 @@
-Scripts for rescoring protein-protein models with AlphaFold2
+Scripts for rescoring protein-protein models with AlphaFold
 
+1.   Set-up a Python virtual environment with AlphaFold and other requirements installed. A requirements.txt file is provided as an example.
+     For help with installing AlphaFold, refer to https://github.com/google-deepmind/alphafold.
+
+     Define a variable to point to the environment, namely ALPHAFOLD_ENV_PATH, i.e.
+     
+     ```bash
+     export ALPHAFOLD_ENV_PATH=/path/to/alphafold_env
+     ```
+
+2.   The rescoring script requires to have access to the AlphaFold params data.
+     Define a variable to point to where the AlphaFold data is stored, namely ALPHAFOLD_DATA_PATH, i.e.
+     
+     ```bash
+     export ALPHAFOLD_DATA_PATH=/path/to/alphafold/data
+     ```
+     
+3.   Prepare the PDB input files to be provided to the rescoring script.
+     The PDB files can contain multiple models.
+     ```
+     python prepare_alphafold.py --ligand_file example/dock_top10_ligand.pdb --target_file example/dock_top10_target.pdb --output_file example/input/complex.pdb
+     ```
+    
+4.   Run the Python rescoring script.
+     For faster execution time, you should process multiple models for a given rescoring run.
+     ```bash
+     bash AF2Score.sh
+     ```
+     
