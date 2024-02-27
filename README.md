@@ -16,15 +16,17 @@ Scripts for rescoring protein-protein models with AlphaFold
      export ALPHAFOLD_DATA_PATH=/path/to/alphafold/data
      ```
      
-3.   Prepare the PDB input files to be provided to the rescoring script.
-     The PDB files can contain multiple models.
+3.   Prepare the PDB input files to be provided to the rescoring script. The PDB files can contain multiple models. In this example, the top 10 predicted poses for the ligand and target collected from molecular docking are to be prepared. The preparation will produce 10 PDB files of the complex, namely from complex_1.pdb to complex_10.pdb.
      ```
+     source $ALPHAFOLD_ENV_PATH/bin/activate
+     
      python prepare_alphafold.py --ligand_file example/dock_top10_ligand.pdb --target_file example/dock_top10_target.pdb --output_file example/input/complex.pdb
      ```
     
-4.   Run the Python rescoring script.
-     For faster execution time, you should process multiple models for a given rescoring run.
+4.   Load the cuda modules and run the Python rescoring script. The script will loops through the complex_*.pdb files located at the input_path, writes the raw data to output_path and writes a record in a database to avoid re-running the same complex twice. For faster execution time, you should process multiple models for a given run.
      ```bash
-     bash AF2Score.sh
+     module load cuda
+     
+     python AF2Score.py --input_path example/input --output_path example/output --data_path $ALPHAFOLD_DATA_PATH --database_file example/example.db
      ```
      
