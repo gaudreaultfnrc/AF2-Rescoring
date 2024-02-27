@@ -23,7 +23,7 @@ Scripts for rescoring protein-protein models with AlphaFold
      python prepare_alphafold.py --ligand_file example/dock_top10_ligand.pdb --target_file example/dock_top10_target.pdb --output_file example/input/complex.pdb
      ```
     
-4.   Load the cuda modules and run the Python rescoring script. The script will loops through the complex_*.pdb files located at the input_path, writes the raw data to output_path and writes a record in a database to avoid re-running the same complex twice. For faster execution time, you should process multiple models for a given run.
+4.   Load the cuda modules and run the Python rescoring script. The script will loop through every complex_*.pdb file located at the input_path, write the raw data to output_path and write a record in the database. If you re-run the script twice, the entries that are already present in the database will be skipped. For faster execution time, you should process multiple models within a single rescoring run.
      ```bash
      module load cuda
      
